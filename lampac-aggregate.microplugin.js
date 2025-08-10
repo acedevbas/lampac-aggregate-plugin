@@ -340,10 +340,21 @@
   }
 
   function mount(){
+    // показатель, что плагин реально загрузился
+    try { if (Lampa && Lampa.Noty) Lampa.Noty.show('Lampac Aggregate: загружен'); } catch(e){}
+
     // кнопка на экране «полной карточки»
     Lampa.Listener.follow('full', function(ev){
       if (ev.type === 'complite'){
         addButton({ render: ev.object.activity.render().find('.view--torrent'), movie: ev.data.movie });
+      }
+    });
+    try{
+      if (Lampa.Activity.active().component === 'full'){
+        addButton({ render: Lampa.Activity.active().activity.render().find('.view--torrent'), movie: Lampa.Activity.active().card });
+      }
+    }catch(e){}
+  });
       }
     });
     try{
