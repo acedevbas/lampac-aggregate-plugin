@@ -1,0 +1,1 @@
+# lampac-aggregate-plugin
